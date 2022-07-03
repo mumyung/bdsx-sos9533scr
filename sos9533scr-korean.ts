@@ -1592,5 +1592,14 @@ command.register("밤", "서버의 시간을 밤으로 바꿉니다", CommandPer
     if (player?.isPlayer()) player.sendMessage("§l§f[ §esos9533scr §f]§f§l §6서버의 시간이 밤으로 변경되었습니다.");
 }, {});
 
+command.register("야간투시", "야간투시를 적용합니다").overload((params, origin) => { 
+    runCommand(`effect ${origin.getName()} night_vision 999999 255 true`)
+}, { option: command.enum("option.nightvt", "적용") }).overload((params, origin) => {
+    const player = origin.getEntity();
+    if (player?.isPlayer()) { 
+        player.removeEffect(MobEffectIds.NightVision) 
+    }
+}, { option: command.enum("option.nightvf", "해제") })
+
 console.info("[ " + "sos9533scr".yellow + " ] " + `${levelname}`.red +` - Plugin Loading... 5/5`.gray)
 console.info("[ " + "sos9533scr".yellow + " ] " + `${levelname}`.red +` - Plugin Loading Completed Successfully`.gray)
